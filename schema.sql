@@ -1,4 +1,4 @@
--- Database: dms-vault
+-- Database: docinventory
 
 CREATE DATABASE docinventory;
 
