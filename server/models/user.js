@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Users = sequelize.define('Users', {
+  var User = sequelize.define('User', {
     username: DataTypes.STRING,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
@@ -10,8 +10,19 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        User.belongsTo(models.Role, {
+          onDelete: 'CASCADE',
+          as:'Role',
+          foreignKey: {
+            allowNull: false
+          }
+        });
+
+        User.hasMany(models.Document, {
+          foreignKey: 'userId'
+        });
       }
     }
   });
-  return Users;
+  return User;
 };
