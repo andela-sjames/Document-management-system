@@ -1,25 +1,56 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
+    comment: "User Model defined",
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "field should not be empty"
+        },
+      },
     },
     firstName:{ 
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "field should not be empty"
+        },
+      },
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "field should not be empty"
+        },
+      },
     },
     email: {
       type:DataTypes.STRING,
       allowNull:false,
+      validate: {
+        isEmail: {
+          msg: "field type should be email"
+        },
+        notEmpty: {
+          msg: "field should not be empty"
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      len: {
+          args: [4, 100],
+          msg: 'Must not be less than 4 characters'
+        },
+      isAlphanumeric: {
+        msg: 'Password should contain letters and numbers'
+      },
     }
   }, {
     classMethods: {

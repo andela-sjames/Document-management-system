@@ -1,15 +1,27 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Document = sequelize.define('Document', {
+    comment: "Document Model defined",
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isAlpha: true,
+        notEmpty: {
+          msg: 'Field should not be empty'
+        }
+      }
     },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Field should not be empty'
+        }
+      }
     },
-    access: {
+    isPrivate: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,15 +32,14 @@ module.exports = function(sequelize, DataTypes) {
         Document.belongsTo(models.User, {
           as: 'User',
           onDelete: 'CASCADE',
-          foreignKey: 'UserId'
+          foreignKey: 'UserId' // field is available here by default
         });
 
         Document.belongsTo(models.Category, {
           as: 'Category',
           onDelete: 'CASCADE',
-          foreignKey: 'CategoryId'
+          foreignKey: 'CategoryId' // field is available here by default
         });
-
       }
     }
   });

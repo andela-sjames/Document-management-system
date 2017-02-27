@@ -1,9 +1,13 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Category = sequelize.define('Category', {
+   comment: "Category Model defined",
    title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isAlpha: true,
+      },
     },
   }, {
     classMethods: {
