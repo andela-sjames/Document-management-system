@@ -1,9 +1,18 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Document = sequelize.define('Document', {
-    title: DataTypes.STRING,
-    content: DataTypes.TEXT,
-    access: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    access: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     classMethods: {
       associate: function(models) {
