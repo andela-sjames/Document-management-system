@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
         },
       },
     },
-    password: {
+    passwordHash: {
       type: DataTypes.STRING,
       allowNull: false,
       len: {
@@ -71,7 +71,17 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'userId'
         });
       }
-    }
+    },
+
+     instanceMethods: {
+        verifyPassword(clearTextPassword) {
+          return bcrypt.compareSync(clearTextPassword, this.passwordHash);
+        },
+
+        hashPassword() {
+          this.passwordHash = bcrypt.hashSync(this.passwordHash, bcrypt.genSaltSync(10));
+      }
+     }
   });
   return User;
 };
