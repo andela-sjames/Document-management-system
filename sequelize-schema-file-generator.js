@@ -1,5 +1,6 @@
 'use strict';
 //////////////////////////////////
+// source: https://gist.github.com/manuelbieh/ae3b028286db10770c81 
 // How to use?
 // 1. Create `sequelize-schema-file-generator.js` in your app root
 // 2. Make sure you've ran the `sequelize init` before (It should create `config`,`seeders`,`migrations` folders).
@@ -18,8 +19,8 @@ const sequelize = new Sequelize(
     '',
     '',
     '', {
-        host: '',
-        dialect: '',
+        host: 'localhost',
+        dialect: 'postgres',
     }
 );
 
@@ -55,7 +56,7 @@ for(let model in models) {
     let tableName = models[model].tableName;
     let indexes = ['\n'];
 
-    if(models[model].options.indexes.length) {
+    if(models[model].options.indexes && models[model].options.indexes.length) {
 
         models[model].options.indexes.forEach((obj) => {
 
