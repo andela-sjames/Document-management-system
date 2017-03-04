@@ -1,9 +1,7 @@
 'use strict';
 module.exports = {
     up: function(queryInterface, Sequelize) {
-        return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-        .then(() => {
-            return queryInterface.createTable('Roles',
+            return queryInterface.createTable('Categories',
             {
                 "id": {
                     "type": "INTEGER",
@@ -12,7 +10,7 @@ module.exports = {
                     "autoIncrement": true
                 },
                 "comment": {
-                    "type": "Role Model defined"
+                    "type": "Category Model defined"
                 },
                 "title": {
                     "type": "VARCHAR(255)",
@@ -30,19 +28,9 @@ module.exports = {
                     "allowNull": false
                 }
             })
-        })
 
-        .then(() => {
-            return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-        });
     },
     down: function(queryInterface, Sequelize) {
-        return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-        .then(() => {
-            return queryInterface.dropTable('Roles');
-        })
-        .then(() => {
-            return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-        });
+        return queryInterface.dropTable('Categories');
     }
 };

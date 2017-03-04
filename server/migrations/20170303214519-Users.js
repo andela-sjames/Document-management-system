@@ -1,8 +1,6 @@
 'use strict';
 module.exports = {
     up: function(queryInterface, Sequelize) {
-        return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-        .then(() => {
             return queryInterface.createTable('Users',
             {
                 "id": {
@@ -86,19 +84,9 @@ module.exports = {
                     "onUpdate": "CASCADE"
                 }
             })
-        })
 
-        .then(() => {
-            return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-        });
     },
     down: function(queryInterface, Sequelize) {
-        return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-        .then(() => {
-            return queryInterface.dropTable('Users');
-        })
-        .then(() => {
-            return queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-        });
+        return queryInterface.dropTable('Users');
     }
 };

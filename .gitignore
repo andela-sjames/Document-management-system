@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 npm-debug.log
 .env
+# escape auto migrations script
+sequelize-schema-file-generator.js
