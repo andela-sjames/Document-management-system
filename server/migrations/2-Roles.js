@@ -1,36 +1,32 @@
 'use strict';
 module.exports = {
     up: function(queryInterface, Sequelize) {
-            return queryInterface.createTable('Categories',
-            {
+            return queryInterface.createTable('Roles',            {
                 "id": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true
                 },
-                "comment": {
-                    "type": "Category Model defined"
-                },
                 "title": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "isAlpha": true
                     }
                 },
                 "createdAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 },
                 "updatedAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 }
             })
 
     },
     down: function(queryInterface, Sequelize) {
-        return queryInterface.dropTable('Categories');
+        return queryInterface.dropTable('Roles');
     }
 };

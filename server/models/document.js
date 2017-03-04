@@ -1,7 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Document = sequelize.define('Document', {
-    comment: "Document Model defined",
     title: {
       type: DataTypes.STRING,
       allowNull: false,

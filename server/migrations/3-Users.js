@@ -1,19 +1,15 @@
 'use strict';
 module.exports = {
     up: function(queryInterface, Sequelize) {
-            return queryInterface.createTable('Users',
-            {
+            return queryInterface.createTable('Users',            {
                 "id": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true
                 },
-                "comment": {
-                    "type": "User Model defined"
-                },
                 "username": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "notEmpty": {
@@ -22,7 +18,7 @@ module.exports = {
                     }
                 },
                 "firstName": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "notEmpty": {
@@ -31,7 +27,7 @@ module.exports = {
                     }
                 },
                 "lastName": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "notEmpty": {
@@ -40,7 +36,7 @@ module.exports = {
                     }
                 },
                 "email": {
-                    "type": "VARCHAR(255)",
+                   type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "isEmail": {
@@ -52,7 +48,7 @@ module.exports = {
                     }
                 },
                 "passwordHash": {
-                    "type": "VARCHAR(255)",
+                   type: Sequelize.STRING,
                     "allowNull": false,
                     "len": {
                         "args": [
@@ -66,15 +62,15 @@ module.exports = {
                     }
                 },
                 "createdAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 },
                 "updatedAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 },
                 "RoleId": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": true,
                     "references": {
                         "model": "Roles",

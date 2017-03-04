@@ -1,19 +1,15 @@
 'use strict';
 module.exports = {
     up: function(queryInterface, Sequelize) {
-            return queryInterface.createTable('Documents',
-            {
+            return queryInterface.createTable('Documents',            {
                 "id": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true
                 },
-                "comment": {
-                    "type": "Document Model defined"
-                },
                 "title": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "isAlpha": true,
@@ -23,7 +19,7 @@ module.exports = {
                     }
                 },
                 "content": {
-                    "type": "TEXT",
+                    type: Sequelize.STRING,
                     "allowNull": false,
                     "validate": {
                         "notEmpty": {
@@ -32,19 +28,19 @@ module.exports = {
                     }
                 },
                 "isPrivate": {
-                    "type": "VARCHAR(255)",
+                    type: Sequelize.STRING,
                     "allowNull": false
                 },
                 "createdAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 },
                 "updatedAt": {
-                    "type": "DATETIME",
+                    type: Sequelize.DATE,
                     "allowNull": false
                 },
                 "CategoryId": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": true,
                     "references": {
                         "model": "Categories",
@@ -54,23 +50,13 @@ module.exports = {
                     "onUpdate": "CASCADE"
                 },
                 "UserId": {
-                    "type": "INTEGER",
+                    type: Sequelize.INTEGER,
                     "allowNull": true,
                     "references": {
                         "model": "Users",
                         "key": "id"
                     },
                     "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE"
-                },
-                "userId": {
-                    "type": "INTEGER",
-                    "allowNull": true,
-                    "references": {
-                        "model": "Users",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
                     "onUpdate": "CASCADE"
                 }
             })
