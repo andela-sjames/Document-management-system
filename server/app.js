@@ -11,7 +11,7 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 // this will let us get the data from a POST
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
 

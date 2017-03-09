@@ -2,7 +2,7 @@ const Role = require('../models').Role;
 
 module.exports = {
   create: (req, res) => {
-    Role.find({
+    Role.findAll({
       where: {
         title: req.body.title
       }

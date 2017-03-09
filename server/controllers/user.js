@@ -2,10 +2,33 @@ const User = require('..models').User;
 
 module.exports = {
     create:(req, res) => {
-        // username: req.body.username || '',
-        // password: req.body.password || '',
 
-        
+        var user = {
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            passwordHash: req.body.password
+        }
 
+        // search if the user exist by via email before creating.
+
+        User.findAll({
+            where: {
+                email: req.body.email
+            }
+        }).then((result) => {
+            if(result) {
+                return res.status(409).json({
+                    message: "email already taken"
+                })
+            }
+            User.create(user).then((user) => {
+                return res.status(201).json(user);
+            })
+            .catch((error) => {
+                return res.status(400).json(error)
+            });
+        })
     }
 }
