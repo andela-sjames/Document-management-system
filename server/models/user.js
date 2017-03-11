@@ -80,6 +80,20 @@ module.exports = function(sequelize, DataTypes) {
         hashPassword() {
           this.passwordHash = bcrypt.hashSync(this.passwordHash, bcrypt.genSaltSync(10));
       }
+     },
+
+     hooks: {
+       beforeCreate(user) {
+         user.hashPassword();
+         next();
+       },
+
+       beforeUpdate(user) {
+        if (user._changed.passwordHash) {
+          user.hashPassword();
+        }
+      }
+
      }
   });
   return User;
