@@ -18,6 +18,7 @@ const routes = (router) => {
 
     // User Routes 
     router.post('/users/create', userControllerapi.createUser);
+    router.get('/users/all', userControllerapi.allUsers);
 
 };
 
