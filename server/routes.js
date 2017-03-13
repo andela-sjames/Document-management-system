@@ -17,8 +17,12 @@ const routes = (router) => {
     }));
 
     // User Routes 
-    router.post('/users', userControllerapi.createUser); // create new user
-    router.get('/users/all', userControllerapi.allUsers);
+    router.post('/users', userControllerapi.createUser); // create new users
+    router.get('/users/all', userControllerapi.getUsers); //get all users 
+
+
+    // Document Routes
+    
 
 };
 

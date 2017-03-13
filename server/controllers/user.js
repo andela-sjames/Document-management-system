@@ -32,7 +32,7 @@ module.exports = {
         })
     },
 
-    allUsers: (req, res) => {
+    getUsers: (req, res) => {
         User.findAll().then((result) => {
             return res.status(200).json(result);
         })
