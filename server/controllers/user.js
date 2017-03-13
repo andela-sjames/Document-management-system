@@ -3,7 +3,7 @@ const User = require('../models').User;
 module.exports = {
     createUser:(req, res) => {
 
-        var user = {
+        const user = {
             username: req.body.username,
             firstName: req.body.firstname,
             lastName: req.body.lastname,

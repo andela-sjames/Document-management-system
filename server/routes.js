@@ -1,4 +1,5 @@
 let userControllerapi = require('./controllers/user');
+let userAuthenticationapi = require('./controllers/authentication');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
@@ -17,12 +18,14 @@ const routes = (router) => {
     }));
 
     // User Routes 
-    router.post('/users', userControllerapi.createUser); // create new users
-    router.get('/users/all', userControllerapi.getUsers); //get all users 
+    router.post('/users/', userControllerapi.createUser); // create new users
+    router.get('/users/', userControllerapi.getUsers); //get all users 
+
+    router.post('/users/login', userAuthenticationapi.userLogin); // login a registered user
 
 
     // Document Routes
-    
+
 
 };
 
