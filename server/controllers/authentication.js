@@ -3,6 +3,11 @@ const User = require('../models').User;
 
 
 module.exports = {
+
+    generateToken: () => {
+        // function should generate token.
+    },
+
     userLogin: (req, res) => {
         // get login details
 
@@ -10,7 +15,7 @@ module.exports = {
         const password = req.body.password;
 
         if (email === '' && password === '') {
-            return error.badRequest('Missing arguments/parameters given')
+            error.badRequest('Missing arguments/parameters given')
             .then((errorResponse) => {
                 return res.status(400).json(errorResponse);
             })
@@ -25,12 +30,16 @@ module.exports = {
         }).then((result) => {
             if (result.email && !result.verifyPassword(password)) {
                 // if user exist verify password
-                return error.unauthorized('Incorrect password entered, please confirm')
+                error.unauthorized('Incorrect password entered, please confirm')
                 .then((errorResponse) => {
                     return res.status(401).json(errorResponse);
                 });
             } else if(result.email && result.verifyPassword(password)){
                 // generate and return token.
+                return res.status(200).json({
+                    result,
+                    token: 'some-random-token',
+                })
             }
             
         })
